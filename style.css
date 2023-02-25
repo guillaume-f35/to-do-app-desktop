@@ -1,0 +1,232 @@
+/* initialisation */
+
+html, body {
+    margin : 0px;
+    box-sizing: border-box;
+}
+
+/* déclaration des variables ************************************/
+:root { 
+    --window-color: white;
+    --header-color: #2f3438; /* penser à modifier la couleurs aussi dans le mains.js fonction "createWindow"  */
+    --nav-lateral-color: #383e42;
+    --article-color: #e1e2e2;
+    --border-radius-8px: 8px;
+    --h1-font-size: 2rem;
+    --h1-color: #fafafa;
+    --font-family: 'Roboto', sans-serif;
+    --transition-all-04-ease: all 0.4s ease;
+
+    --item-nav-lateral-color:#fafafa;
+    --item-nav-lateral-font-size: 1.4rem;
+    --padding-12px: 12px;
+    --color-383e42: #383e42;
+}
+
+/* positionement de l'application en flexbox ********************/
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--window-color);
+    background-color: white;
+    -webkit-app-region: drag;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+}
+
+/* header principal ***********************************************/
+
+header {
+    width: 100%;
+    height: 50px;
+    min-height: 50px;
+    background-color: var(--header-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: var(--h1-font-size);
+    color: var(--h1-color);
+    margin: 0px;
+    font-family: var(--font-family);
+}
+
+/* contenu principal ***********************************************/
+
+main {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* navigation latéral *********************************************/
+
+.nav-lateral {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 100%;
+    background-color: var(--nav-lateral-color);
+}
+
+.item-nav-lateral {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    transition: var(--transition-all-04-ease);
+    color: var(--item-nav-lateral-color);
+    font-size: var(--item-nav-lateral-font-size);
+    font-family: var(--font-family);
+    padding: var(--padding-12px);  
+    -webkit-app-region: no-drag;
+}
+
+.item-nav-lateral:hover {
+    transition: var(--transition-all-04-ease);
+    background-color: #434a4e;
+    cursor: pointer;
+}
+
+.img-item-nav-lateral {
+    height: 20px;
+    padding-right: var(--padding-12px);
+}
+
+/* article ******************************************************/
+
+article {
+    width:100%;
+    height: 100%;
+    background: no-repeat center center /cover url("fichiers/images/open space.jpg");
+    overflow: auto;
+}
+
+/* fenetre Tache ***********************************************/
+
+/* div principal qui englobe les nouvelles taches*/
+.div-tasks-menu-task {  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* div qui contient la création de la nouvelle tache */
+.div-input-add-task-menu-task {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    background-color: #5a6063;
+    box-shadow: 0px 4px 10px hsla(0, 0%, 0%, 0.8);
+}
+/* bouton add nouvelle tache */
+.btn-add-task-menu-task {
+    display: block;
+    background-color: #5a6063;
+    border-radius: var(--border-radius-8px);
+    margin: 10px;
+    height: 35px; 
+    transition: var(--transition-all-04-ease);
+    border: 1px solid var(--color-383e42);
+    -webkit-app-region: no-drag;
+} 
+
+/* survole bouton add nouvelle tache */
+.btn-add-task-menu-task:hover {
+    background-color: #8a8e90; /*color survole*/
+    cursor: pointer;
+    transition: var(--transition-all-04-ease);
+}
+
+/* input nouvelle tache */
+.input-new-task-menu-task {
+    background-color: #e1e2e2; 
+    padding: 5px;
+    margin: 10px;
+    width: 90%;
+    border-radius: 5px;
+    font-family: var(--font-family);
+    font-size: 1.3rem;
+    border: 1px solid var(--color-383e42); 
+    -webkit-app-region: no-drag;
+}
+
+.input-new-task-menu-task:focus {
+    outline-color: var(--color-383e42);
+}
+    
+/* div princiapl taches*/ 
+.div-main-task { 
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* div qui contient le texte de la nouvelle tache */
+.div-text-task {
+    background-color: #e1e2e2; 
+    padding: 5px;
+    margin: 10px;
+    width: 90%;
+    height: 25px;
+    border-radius: 5px;
+    font-family: var(--font-family);
+    font-size: 1.3rem;
+    border: 1px solid var(--color-383e42); 
+}
+
+/* .new-task-menu-task-active {
+    text-decoration: line-through;
+    background-color: #2f3438;
+} */
+
+/* image check vide , garbage*/
+.new-img-check-garbage-menu-task {
+    background-color: #e1e2e2; 
+    border-radius: 5px;
+    margin-right: 4px;
+    height: 25px;
+    border: 1px solid var(--color-383e42);
+    -webkit-app-region: no-drag;
+}
+
+/* image check vide , garbage*/
+.new-img-check-garbage-menu-task:hover {
+    cursor: pointer;
+    background-color: #c7c9c9; /*color survole*/
+}
+
+/* image check plein lorsque l'on clique dessus*/
+.new-img-check-menu-task-active {
+    background: no-repeat center center /cover url("fichiers/icons/check_circle_FILL0_wght400_GRAD0_opsz48.svg");
+    background-color: #e1e2e2;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+.red {
+    background-color: #B22222;
+}
+
+.red:hover {
+    background-color: #8f1b1b;
+}
+
