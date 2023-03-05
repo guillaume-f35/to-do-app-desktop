@@ -22,15 +22,23 @@ function main() {
              e.stopPropagation();
          });
      });
-
+     
 }
 
 main()
 
 // FIN fonction principale ---------------------------------------------------------------------------------------
 
+// tempo
 
+// script vers main
+window.api.nomLiaison('world');
 
+const essai = async () => {
+   return await window.api.mainToRenderer()
+} 
+console.log(essai())
+  
 
 
 

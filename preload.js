@@ -11,4 +11,16 @@ window.addEventListener('DOMContentLoaded', () => {
   for (const dependency of ['chrome', 'node', 'electron']) {
     replaceText(`${dependency}-version`, process.versions[dependency])
   }
+  
 })
+
+// tempo
+
+const { contextBridge,ipcRenderer } = require('electron')
+
+// script vers main
+const rendererToMain ={
+  nomLiaison: (message) => ipcRenderer.send("nomLiaison", message),
+  mainToRenderer: () => ipcRenderer.invoke('mainToRenderer')
+}
+contextBridge.exposeInMainWorld('api', rendererToMain)

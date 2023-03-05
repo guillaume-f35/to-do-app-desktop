@@ -2,7 +2,8 @@
 
 // Modules de controle du cycle de vie de l'application et de création 
 // de fenêtre native de navigateur
-const { app, BrowserWindow } = require('electron')
+
+const { app, BrowserWindow, ipcMain } = require('electron') 
 const path = require('path')
 
 const createWindow = () => {
@@ -55,8 +56,13 @@ app.on('window-all-closed', () => {
 
 
 // tempo 
-console.log('essai')
-const fs = require('fs')
-let fichier = fs.readFileSync('save-task.json')
-let personne = JSON.parse(fichier)
-console.log(personne)
+
+// script vers main
+ipcMain.on("nomLiaison", (event, args) => {
+  console.log(args)
+})
+
+
+ipcMain.handle('mainToRenderer', async (event, args) => {
+  return 17;
+});
