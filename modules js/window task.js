@@ -4,7 +4,8 @@
 function windowTaches() {
     
     const divInputTask = document.querySelector('.div-input-add-task-menu-task')
-    let tabTask = []; // declare le tableau des nouvelles taches
+    let tabTask = []; // declare le tableau contenant les instances de la classe task
+    let tabTextTask = []; // déclare le tableau qui va stocker le texte des taches 
     
     // permet de savoir si il y a déjà une div"nouvelle tache" de créer lors de l'ouverture de 'Taches'
     if (divInputTask === null) {
@@ -19,19 +20,27 @@ function windowTaches() {
     const btnAddTask = document.querySelector('.btn-add-task-menu-task')
 
     btnAddTask.addEventListener('click', function(e) {
-        addNewTask(tabTask)
+
+        let id = addNewTask(tabTask) 
+        tabTextTask.push(tabTask[id].textTask())
+
     });
 
     // ajout d'une nouvelle tache grace au bouton 'enter'
     document.onkeydown = function (e) {
+
         if (e.code === 'Enter') {
-            addNewTask(tabTask)
+
+            let id = addNewTask(tabTask) 
+            tabTextTask.push(tabTask[id].textTask())
+
         };
     };
 
     //appel de la fonction gestion des boutons check et garbage
     btnsTask(tabTask);
-    
+
 };
 
-// DEBUT fonction task ----------------------------------------------------------------------------------
+// FIN fonction task ----------------------------------------------------------------------------------
+

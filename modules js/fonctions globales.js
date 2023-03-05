@@ -13,17 +13,19 @@
 
         // recuperation tu texte dans l'input
         let input = document.querySelector("#input-task");
-        
+        let idTask = '';
+
         if (input.value !== '') {
 
             // création de la nouvelle tache
             let newInstanceClass = new Task(article, tab)
             tab.push(newInstanceClass)  
-            tab[tab.length-1].task(input.value) 
+            idTask = tab[tab.length-1].task(input.value) 
             input.value = ''; // réinitialise l'input  
 
         }
         
+        return idTask;
      }
 
 

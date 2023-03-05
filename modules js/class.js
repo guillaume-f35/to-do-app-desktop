@@ -6,6 +6,7 @@ class Task {
         this.container = container;
         this.tab = tab;
         this.id = 0;
+        this.textContent = '';
     }
 
     // methode qui permet de créer une nouvelle tache
@@ -13,6 +14,7 @@ class Task {
 
         // id de la nouvelle tache 
         this.id = this.tab.length-1;
+        this.textContent = textTask;
 
         // création de la div qui contient 'task', 'check' et garbage
         let divNewCheck = document.createElement('div');
@@ -25,7 +27,7 @@ class Task {
         newTask.className = 'div-text-task';
         newTask.setAttribute('alt', 'new task');
         newTask.setAttribute('id', this.id)
-        newTask.innerText = textTask;
+        newTask.innerText = this.textContent;
         divNewCheck.prepend(newTask);
 
         // création du bouton check 
@@ -44,6 +46,7 @@ class Task {
         garbage.setAttribute('id', this.id)
         divNewCheck.append(garbage);  
     
+        return this.id;
     }
 
     
@@ -65,6 +68,10 @@ class Task {
 
             // réinitialise le tableau à 0 si toutes les taches on été supprimé (a faire)
 
+    };
+
+    textTask() {
+        return this.textContent;
     };
     
 }
