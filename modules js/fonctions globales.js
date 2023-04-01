@@ -2,45 +2,93 @@
 
     // fonction suppression fenetre active 
     function deleteWindowActive() {
+
         while (article.firstChild) {
             article.removeChild(article.firstChild);
+
         };
+
+        article.removeEventListener('click',deleteTask)
+
+        resetTabTask()
+        
     }
 
 
     // fonction qui ajoute une nouvelle tache apres l'avoir écrit dans l'input
-    function addNewTask(tab) {
+    function addNewTask(tab, tab2) {
 
         // recuperation tu texte dans l'input
         let input = document.querySelector("#input-task");
-        let idTask = '';
 
         if (input.value !== '') {
 
             // création de la nouvelle tache
             let newInstanceClass = new Task(article, tab)
             tab.push(newInstanceClass)  
-            idTask = tab[tab.length-1].task(input.value) 
+            tab[tab.length-1].task(input.value) 
+
+            tab2[tab.length-1] = input.value;
+
             input.value = ''; // réinitialise l'input  
 
         }
-        
-        return idTask;
+
      }
 
+    // Fonction qui recrée les taches contenue dans le tableau "tabTextTask" 
 
-    //fonction qui gère les boutons check et garbage ++++changer article
-     function btnsTask(tab) {
+    function addNewTasks(tab, tab2) {
 
-        article.addEventListener('click', function(e) {
+        for (let i = 0; i < tab2.length; i++) {
 
-            if (e.target.getAttribute('id') !== null) {
-                let id = e.target.getAttribute('id')
-                tab[id].btnCheckGarbage(e)
+            if (tab2[i] !== null) {
+                let newInstanceClass = new Task(article, tab);
+                tab.push(newInstanceClass); 
+                tab[i].task(tab2[i]);  
             }
-    
-            e.stopPropagation();
-        })
+            
+        }
+    }
 
-     }
+     //fonction qui permet de supprimer une tache
+     function deleteTask(e) {
+                
+        if (e.target.className === 'new-img-garbage-menu-task red') {
+
+            let id = e.target.parentNode.getAttribute('id');
+            tabTask[id] = null; // indique que la tache à été supprimée mais ne change pas la taille du tableau
+            tabBackupTask.splice(id, 1); // met à jours le tableau de sauvegarde
+            e.target.parentNode.remove();
+
+        }
+        
+    }
+
+    
+    // fonction qui permet de checker les taches
+    function checkTask(e) {
+
+        if (e.target.className === 'new-img-check-menu-task' || e.target.className === 'new-img-check-menu-task new-img-check-menu-task-active') {
+
+            e.target.classList.toggle('new-img-check-menu-task-active');
+            e.target.parentNode.firstChild.classList.toggle('line-through');
+
+        }
+        
+    }
+
+    // Fonction qui permet de réinitialiser les tableaux contenants les instances de la classe task
+    function resetTabTask() {
+
+        tabTask = []; 
+
+    }
+
+
+
+    // A VOIR +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
          
